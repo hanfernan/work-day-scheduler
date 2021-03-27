@@ -1,19 +1,25 @@
 //variables
 var container = $('.row');
-var timeOfDay = ["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"];
+var hour = ["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"];
 var saveBtnEl
 var today = moment();
+var time = moment().format("hh");
+
+console.log(time);
+
+//display today's date in the header
 $("#currentDay").text(today.format("dddd, MMM Do, YYYY"));
+
 //dynamically create the schedule rows inside a for loop
-for (var i = 0; i < timeOfDay.length; i++) {
+for (var i = 0; i < hour.length; i++) {
     //create div .hour
-    var timeOfDayEl = $('<div>');
+    var hourEl = $('<div>');
     //add content to element
-    timeOfDayEl.text(timeOfDay[i]);
+    hourEl.text(hour[i]);
     //add class to element
-    timeOfDayEl.addClass('hour');
+    hourEl.addClass('hour');
     //append to container
-    container.append(timeOfDayEl);
+    container.append(hourEl);
 
     //create text area .time-block
     var timeBlockEl = $('<textarea>');
@@ -28,19 +34,17 @@ for (var i = 0; i < timeOfDay.length; i++) {
     container.append(saveBtnEl);
 }
 
-//write function so that save button stores to local storage
-
 
 //write if else statement incorporating moment to get time to change color
+if (hour[i] === time) {
+    timeBlockEl.addClass('present');
+} else if (hour[i] < time) {
+    timeBlockEl.addClass('past');
+} else {
+    timeBlockEl.addClass('future');
+}
 
-//if (timeOfDay[i] === momentTimeHour){
-    //timeBlockEl.addClass('present');
-//}else if (timeOfDay[i] < momentTimeHour){
-    //timeBlockEl.addClass('past');
-//}else (timeOfDay[i] > momentTimeHour){
-    //timeBlockEl.addClass('future');
-//}
-
-//define momentTimeHour
-
+//REMAINING:
+//split hour into key value pairs so you can compare the hour without AM or PM to time
+//write function so that save button stores to local storage
 //figure out why the rows be doin' that
