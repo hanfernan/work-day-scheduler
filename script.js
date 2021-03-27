@@ -1,7 +1,10 @@
 //variables
 var container = $('.row');
 var timeOfDay = ["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"];
-
+var saveBtnEl
+var today = moment();
+$("#currentDay").text(today.format("dddd, MMM Do, YYYY"));
+//dynamically create the schedule rows inside a for loop
 for (var i = 0; i < timeOfDay.length; i++) {
     //create div .hour
     var timeOfDayEl = $('<div>');
@@ -25,9 +28,19 @@ for (var i = 0; i < timeOfDay.length; i++) {
     container.append(saveBtnEl);
 }
 
+//write function so that save button stores to local storage
 
-//event listeners
 
-//save button stores to local storage
-//if else statement incorporating moment to get time to change color
-//append today's date to header with moment.js
+//write if else statement incorporating moment to get time to change color
+
+//if (timeOfDay[i] === momentTimeHour){
+    //timeBlockEl.addClass('present');
+//}else if (timeOfDay[i] < momentTimeHour){
+    //timeBlockEl.addClass('past');
+//}else (timeOfDay[i] > momentTimeHour){
+    //timeBlockEl.addClass('future');
+//}
+
+//define momentTimeHour
+
+//figure out why the rows be doin' that
