@@ -1,4 +1,4 @@
-//variables
+//define variables
 var container = $('.row');
 var hourContainer = [
     { hour: 9, period: "AM", milTime: 9 },
@@ -15,8 +15,7 @@ var today = moment();
 var time = moment().format("HH");
 var saveBtnEl
 var timeBlockEl
-console.log(time);
-console.log(hourContainer[0].milTime);
+
 //display today's date on the page in the header
 $("#currentDay").text(today.format("dddd, MMM Do, YYYY"));
 
@@ -47,23 +46,7 @@ function generateSchedule() {
         }
     }
 }
-//dynamically create the schedule rows inside a for loop
 
+//call generateSchedule function so it will appear on page
 generateSchedule();
-
-// function init() {
-//     var scheduleItems = JSON.parse(localStorage.getItem("timeBlockEl"));
-
-// }
-
-// function currentSchedule() {
-//     console.log($(this).attr("data-index"));
-// }
-// saveBtnEl.on("click",)
-
-//When saveBtnEl is clicked, then timeBlockEl text is saved to local storage
-
-//REMAINING:
-//figure out why time is doing that
-//write function so that save button stores to local storage
 
