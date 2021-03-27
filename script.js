@@ -11,50 +11,47 @@ var hourContainer = [
     { hour: 4, period: "PM" },
     { hour: 5, period: "PM" },
 ];
-var saveBtnEl
 var today = moment();
-var time = moment().format("hh");
+var time = moment().format("hh A");
+var saveBtnEl
 
-console.log(time);
-
-//display today's date in the header
+//display today's date on the page in the header
 $("#currentDay").text(today.format("dddd, MMM Do, YYYY"));
 
 //dynamically create the schedule rows inside a for loop
 for (var i = 0; i < hourContainer.length; i++) {
-    //create div .hour
-    var hourEl = $('<div>');
-    //add content to element
-    hourEl.text(hourContainer[i].hour + hourContainer[i].period);
-    //add class to element
-    hourEl.addClass('hour');
+    //create div .hour and add class and content
+    var hourEl = $('<div>').addClass('hour').text(hourContainer[i].hour + " " + hourContainer[i].period);
     //append to container
     container.append(hourEl);
 
     //create text area .time-block
-    var timeBlockEl = $('<textarea>');
-    timeBlockEl.text('');
-    timeBlockEl.addClass('time-block');
+    var timeBlockEl = $('<textarea>').addClass('time-block').text('');
+    // timeBlockEl;
     container.append(timeBlockEl);
 
-    //create save button .saveBtn
-    var saveBtnEl = $('<button>');
-    saveBtnEl.text('Save');
-    saveBtnEl.addClass('saveBtn');
+    //create save button .saveBtn that is attached to the index of each row
+    var saveBtnEl = $('<button class="saveBtn" data-index="' + i + '">Save</button>');
     container.append(saveBtnEl);
+
+    //write if else statement incorporating moment to get time to change color
+    if (hourContainer[i].hour + " " + hourContainer[i].period == time) {
+        timeBlockEl.addClass('present');
+    } else if (hourContainer[i].hour + " " + hourContainer[i].period < time) {
+        timeBlockEl.addClass('past');
+    } else {
+        timeBlockEl.addClass('future');
+    }
+}
+
+function init() {
+
 }
 
 
-//write if else statement incorporating moment to get time to change color
-// if (hourContainer.hour[i] === time) {
-//     timeBlockEl.addClass('present');
-// } else if (hourContainer.hour[i] < time) {
-//     timeBlockEl.addClass('past');
-// } else {
-//     timeBlockEl.addClass('future');
-// }
+
 
 //REMAINING:
-//split hour into key value pairs so you can compare the hour without AM or PM to time
+//figure out why time is doing that
 //write function so that save button stores to local storage
-//figure out why the rows be doin' that
+
